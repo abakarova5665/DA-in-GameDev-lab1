@@ -1,4 +1,3 @@
-```p
 #Import the required modules, numpy for calculation, and Matplotlib for drawing
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,4 +10,3 @@ y = [2,22,24,65,79,82,55,130,150,199]
 y = np.array(y)
 #Show the effect of a scatter plot
 plt.scatter(x,y)
-```
