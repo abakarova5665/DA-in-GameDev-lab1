@@ -7,7 +7,7 @@
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
 | Задание 1 | * | 60 |
-| Задание 2 | # | 20 |
+| Задание 2 | * | 20 |
 | Задание 3 | # | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
@@ -83,6 +83,10 @@ y = np.array(y)
 #Show the effect of a scatter plot
 plt.scatter(x,y)
 ```
+![image](https://user-images.githubusercontent.com/48391156/193639103-518d2827-f45b-48c3-bda1-c9e75fdadac1.png)
+
+
+
 
 
 ```py
@@ -110,6 +114,65 @@ def iterate(a,b,x,y,times):
     a,b = optimize(a,b,x,y)
   return a,b
 ```
+```py
+#Initialize parameters and display
+a = np.random.rand(1)
+print(a)
+b = np.random.rand(1)
+print(b)
+Lr = 0.000001
+#For the first iteration, the parameter values, losses, and visualization after the iteration are displayed
+a,b = iterate(a,b,x,y,1)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+![t112](https://user-images.githubusercontent.com/48391156/193638870-51d3a219-d33f-48fc-b5cf-c26fa6bf2090.png)
+
+
+```py
+a,b = iterate(a,b,x,y,2)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+![t113](https://user-images.githubusercontent.com/48391156/193639402-078bcf25-4b8e-4d46-96a0-cf39a68dc828.png)
+
+```py
+a,b = iterate(a,b,x,y,4)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+![t114](https://user-images.githubusercontent.com/48391156/193639603-81691b3f-fc30-4083-a0c3-81b650d7dbb4.png)
+
+```py
+a,b = iterate(a,b,x,y,5)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+![t115](https://user-images.githubusercontent.com/48391156/193639852-2e033b29-3d11-475c-ba2e-b4e9662a0c60.png)
+
+```py
+a,b = iterate(a,b,x,y,10000)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+![t116](https://user-images.githubusercontent.com/48391156/193640008-0a183961-ebec-456f-86ec-e63f5d81b508.png)
+
+
 
 ## Задание 3
 ### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
