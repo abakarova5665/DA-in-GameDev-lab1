@@ -66,9 +66,6 @@ public class Lab1_Task1 : MonoBehaviour
 ## Задание 2
 ### Пошагово выполнить каждый пункт с описанием и примером реализации задачи по теме лабораторной работы.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
-
 ```py
 #Import the required modules, numpy for calculation, and Matplotlib for drawing
 import numpy as np
