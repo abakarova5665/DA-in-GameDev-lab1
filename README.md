@@ -42,34 +42,73 @@
 ```py
 print ("Hello, World!")
 ```
+![Lab1_Task1](https://user-images.githubusercontent.com/48391156/193573415-e5cc2379-7613-4019-a9df-c50ccee8f41c.png)
 
+
+### Вывод строки "Hello World!" в Unity
+```py
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Lab1_Task1 : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        Debug.Log("Hello, World!!!");
+    }
+
+}
+```
+![Lab1_Task1,1](https://user-images.githubusercontent.com/48391156/193578053-d70f4bb1-8022-41ba-a8d6-01f873d15d21.png)
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+### Пошагово выполнить каждый пункт с описанием и примером реализации задачи по теме лабораторной работы.
 
 - Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
 - Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
 
 ```py
+#Import the required modules, numpy for calculation, and Matplotlib for drawing
+import numpy as np
+import matplotlib.pyplot as plt
+#This code is for jupyter Notebook only
+%matplotlib inline
+# define data, and change list to array
+x = [3,21,22,34,54,34,55,67,89,99]
+x = np.array(x)
+y = [2,22,24,65,79,82,55,130,150,199]
+y = np.array(y)
+#Show the effect of a scatter plot
+plt.scatter(x,y)
+```
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
 
+```py
+#The basic linear regression model is wx+ b, and since this is a two-dimensional space, the model is ax+ b
+def model(a, b, x):
+  return a*x + b
+#Tahe most commonly used loss function of linear regression model is the lossfunction of mean variance difference
+def loss_function(a, b, x, y):
+  num = len(x)
+  prediction=model(a,b,x)
+  return (0.5/num) * (np.square(prediction-y)).sum()
+#The optimization function mainly USES partial derivatives to update two parameters a and b
+def optimize(a,b,x,y):
+  num = len(x)
+  prediction = model(a,b,x)
+#Update the values of A and B by finding the partial derivatives of the loss function on a and b
+  da = (1.0/num) * ((prediction -y)*x).sum()
+  db = (1.0/num) * ((prediction -y).sum())
+  a = a - Lr*da
+  b = b - Lr*db
+  return a, b
+#iterated function, return a and b
+def iterate(a,b,x,y,times):
+  for i in range(times):
+    a,b = optimize(a,b,x,y)
+  return a,b
 ```
 
 ## Задание 3
