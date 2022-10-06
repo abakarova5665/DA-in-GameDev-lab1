@@ -66,6 +66,9 @@ public class Lab1_Task1 : MonoBehaviour
 ## Задание 2
 ### Пошагово выполнить каждый пункт с описанием и примером реализации задачи по теме лабораторной работы.
 
+Ход работы:
+- Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
+
 ```py
 #Import the required modules, numpy for calculation, and Matplotlib for drawing
 import numpy as np
@@ -84,7 +87,7 @@ plt.scatter(x,y)
 
 
 
-
+- Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
 ```py
 #The basic linear regression model is wx+ b, and since this is a two-dimensional space, the model is ax+ b
@@ -111,6 +114,10 @@ def iterate(a,b,x,y,times):
     a,b = optimize(a,b,x,y)
   return a,b
 ```
+
+Начать итерацию
+
+Шаг 1. Инициализация и модель итеративной оптимизации
 ```py
 #Initialize parameters and display
 a = np.random.rand(1)
@@ -126,9 +133,14 @@ print(a,b,loss)
 plt.scatter(x,y)
 plt.plot(x,prediction)
 ```
-![t112](https://user-images.githubusercontent.com/48391156/193638870-51d3a219-d33f-48fc-b5cf-c26fa6bf2090.png)
 
+[0.39804736]
+[0.20904672]
+[0.40229218] [0.20910828] 3040.760488335982
+[<matplotlib.lines.Line2D at 0x1ac156e0490>]
+![image](https://user-images.githubusercontent.com/48391156/194259282-50113ba5-d172-479a-90c9-e550d33de809.png)
 
+Шаг 2 На второй итерации отображаются значения параметров, значения потерь и эффекты визуализации после итерации
 ```py
 a,b = iterate(a,b,x,y,2)
 prediction=model(a,b,x)
@@ -137,8 +149,27 @@ print(a,b,loss)
 plt.scatter(x,y)
 plt.plot(x,prediction)
 ```
-![t113](https://user-images.githubusercontent.com/48391156/193639402-078bcf25-4b8e-4d46-96a0-cf39a68dc828.png)
+[0.41074187] [0.2092308] 3005.1103630458274
+[<matplotlib.lines.Line2D at 0x1ac15747460>]
+![image](https://user-images.githubusercontent.com/48391156/194259392-8b80dcd9-f7a8-473e-ace7-4addd3473d78.png)
 
+
+Шаг 3 Третья итерация показывает значения параметров, значения потерь и
+визуализацию после итерации
+```py
+a,b = iterate(a,b,x,y,3)
+prediction=model(a,b,x)
+loss = loss_function(a, b, x, y)
+print(a,b,loss)
+plt.scatter(x,y)
+plt.plot(x,prediction)
+```
+[0.42331714] [0.20941307] 2952.4691845375987
+[<matplotlib.lines.Line2D at 0x1ac1781e770>]
+![image](https://user-images.githubusercontent.com/48391156/194259468-73421264-26d0-4d9f-be8f-892dee628567.png)
+
+
+Шаг 4 На четвертой итерации отображаются значения параметров, значения потерь и эффекты визуализации
 ```py
 a,b = iterate(a,b,x,y,4)
 prediction=model(a,b,x)
@@ -147,8 +178,12 @@ print(a,b,loss)
 plt.scatter(x,y)
 plt.plot(x,prediction)
 ```
-![t114](https://user-images.githubusercontent.com/48391156/193639603-81691b3f-fc30-4083-a0c3-81b650d7dbb4.png)
+[0.43990065] [0.2096533] 2883.8086883273045
+[<matplotlib.lines.Line2D at 0x1ac178b54b0>]
+![image](https://user-images.githubusercontent.com/48391156/194259548-84784319-ee56-4389-95ce-f71dd5534851.png)
 
+
+Шаг 5 Пятая итерация показывает значение параметра, значение потерь и эффект визуализации после итерации
 ```py
 a,b = iterate(a,b,x,y,5)
 prediction=model(a,b,x)
@@ -157,8 +192,12 @@ print(a,b,loss)
 plt.scatter(x,y)
 plt.plot(x,prediction)
 ```
-![t115](https://user-images.githubusercontent.com/48391156/193639852-2e033b29-3d11-475c-ba2e-b4e9662a0c60.png)
+[0.46033877] [0.20994916] 2800.377416862917
+[<matplotlib.lines.Line2D at 0x1ac17a80e50>]
+![image](https://user-images.githubusercontent.com/48391156/194259620-bde75e88-4048-436d-97d3-f3acb855886a.png)
 
+
+Шаг 6 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
 ```py
 a,b = iterate(a,b,x,y,10000)
 prediction=model(a,b,x)
@@ -167,50 +206,14 @@ print(a,b,loss)
 plt.scatter(x,y)
 plt.plot(x,prediction)
 ```
-![t116](https://user-images.githubusercontent.com/48391156/193640008-0a183961-ebec-456f-86ec-e63f5d81b508.png)
+[1.7501248] [0.19898818] 189.35563420094786
+[<matplotlib.lines.Line2D at 0x1ac17aebaf0>]
+![image](https://user-images.githubusercontent.com/48391156/194259668-0da72e24-5cff-4dc5-8e1b-47df20851951.png)
 
 
-
-## Задание 3
-### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
-
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
-
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
 
 ## Выводы
-
-Абзац умных слов о том, что было сделано и что было узнано.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+При выполнения данной лабораторной работы я ознакомилась со средой разработки VS Code, облачной средой Google Colab, Jupiter, а также со средой разработки Unity. Узнала базовые функции в Python и C#. Научилась выводить строки в Unity. А так же попыталась разобраться в непростом для меня кодом на примере линейной регрессии.
 
 ## Powered by
 
